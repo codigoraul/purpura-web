@@ -1,0 +1,71 @@
+---
+interface Props {
+  variant?: "light" | "dark";
+  size?: number;
+}
+const { variant = "dark", size = 48 } = Astro.props;
+const colorA = variant === "light" ? "#c9a8f0" : "#3b1d6e";
+const colorB = variant === "light" ? "#f4f1f9" : "#7b45c4";
+const textColor = variant === "light" ? "#ffffff" : "#3b1d6e";
+---
+
+<div class="logo-wrapper">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <!-- Curva superior (púrpura oscuro) -->
+    <path
+      d="M 15 50 Q 50 5 85 50"
+      fill="none"
+      stroke={colorA}
+      stroke-width="7"
+      stroke-linecap="round"
+    />
+    <!-- Curva inferior (púrpura medio) -->
+    <path
+      d="M 15 50 Q 50 95 85 50"
+      fill="none"
+      stroke={colorB}
+      stroke-width="7"
+      stroke-linecap="round"
+    />
+    <!-- Círculo central -->
+    <circle cx="50" cy="50" r="6" fill={colorA} />
+    <circle cx="50" cy="50" r="3" fill={colorB} />
+  </svg>
+  <div class="logo-text" style={`color: ${textColor}`}>
+    <span class="logo-nombre">Grupo Púrpura</span>
+    <span class="logo-sub">Inversiones</span>
+  </div>
+</div>
+
+<style>
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo-nombre {
+    font-family: var(--font-titulo);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .logo-sub {
+    font-family: var(--font-cuerpo);
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+</style>
